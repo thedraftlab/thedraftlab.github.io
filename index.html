@@ -3,15 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Research Lab</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <title>Design, Research and Analysis in Fluid Technologies Lab (The DRAFT Lab)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d3748;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Research Areas */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .research-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            justify-items: center;
+        }
+
+        @media (max-width: 992px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .team-member {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-name a {
+            color: #2d3748;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .member-name a:hover {
+            color: #667eea;
+        }
+
+        .member-role {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        /* Publications */
+        .publication {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .publication h4 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication .authors {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication .journal {
+            color: #718096;
+            font-style: italic;
+        }
+
+        .publication .doi {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .publication .doi a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .publication .doi a:hover {
+            color: #4c51bf;
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">Advanced Research Lab</div>
+            <div class="logo">Design, Research and Analysis in Fluid Technologies Lab (The DRAFT Lab)</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#research">Research</a></li>
@@ -91,28 +450,10 @@
         <div class="container">
             <h2 class="section-title">Recent Publications</h2>
             <div class="publication fade-in">
-                <h4>Advanced Neural Networks for Climate Modeling</h4>
-                <div class="authors">Chen, R., Smith, M., Johnson, A.</div>
-                <div class="journal">Nature Climate Change (2024)</div>
-                <div class="doi">DOI: <a href="https://doi.org/10.1038/s41558-024-01234-5" target="_blank">10.1038/s41558-024-01234-5</a></div>
-            </div>
-            <div class="publication fade-in">
-                <h4>Quantum Algorithms for Optimization Problems</h4>
-                <div class="authors">Johnson, A., Lee, D., Chen, R.</div>
-                <div class="journal">Physical Review Letters (2024)</div>
-                <div class="doi">DOI: <a href="https://doi.org/10.1103/PhysRevLett.133.045678" target="_blank">10.1103/PhysRevLett.133.045678</a></div>
-            </div>
-            <div class="publication fade-in">
-                <h4>Big Data Analytics in Genomics Research</h4>
-                <div class="authors">Smith, M., Kim, S., Brown, J.</div>
-                <div class="journal">Bioinformatics (2024)</div>
-                <div class="doi">DOI: <a href="https://doi.org/10.1093/bioinformatics/btae234" target="_blank">10.1093/bioinformatics/btae234</a></div>
-            </div>
-            <div class="publication fade-in">
-                <h4>Machine Learning Approaches to Drug Discovery</h4>
-                <div class="authors">Lee, D., Johnson, A., Chen, R.</div>
-                <div class="journal">Journal of Chemical Information and Modeling (2023)</div>
-                <div class="doi">DOI: <a href="https://doi.org/10.1021/acs.jcim.3c01456" target="_blank">10.1021/acs.jcim.3c01456</a></div>
+                <h4>Machine learning-based resistance prediction of AMECRC hull</h4>
+                <div class="authors">R. S. Niloy, M. S. Islam, A. Jahin, M. R. Mozumder and R. Ahmed</div>
+                <div class="journal">24th Australasian Fluid Mechanics Conference (AMFC 2024), Canberra, ACT, Australia</div>
+                <div class="doi">DOI: <a href="https://doi.org/10.5281/zenodo.14213316" target="_blank">10.5281/zenodo.14213316</a></div>
             </div>
         </div>
     </section>
@@ -125,24 +466,20 @@
                 <div class="contact-card fade-in">
                     <div class="contact-icon">📍</div>
                     <h3>Address</h3>
-                    <p>Advanced Research Lab<br>
-                    University Science Building<br>
-                    Room 404, 4th Floor<br>
-                    123 Research Drive<br>
-                    Science City, SC 12345</p>
+                    <p>Design, Research and Analysis in Fluid Technologies Lab (The DRAFT Lab)<br>
+                    Dhaka, Bangladesh - 1000</p>
                 </div>
                 <div class="contact-card fade-in">
                     <div class="contact-icon">📧</div>
                     <h3>Email</h3>
-                    <p>info@advancedresearchlab.edu<br>
-                    rachel.chen@university.edu</p>
+                    <p>thedraftlab@outlook.com</p>
                 </div>
-                <div class="contact-card fade-in">
+<!--                 <div class="contact-card fade-in">
                     <div class="contact-icon">📞</div>
                     <h3>Phone</h3>
                     <p>Office: (555) 123-4567<br>
                     Lab: (555) 123-4568</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -150,8 +487,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 Advanced Research Lab. All rights reserved.</p>
-            <p>Advancing science through collaborative research and innovation</p>
+            <p>&copy; 2025 The DRAFT Lab. All rights reserved.</p>
         </div>
     </footer>
 
