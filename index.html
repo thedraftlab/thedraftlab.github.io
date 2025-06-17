@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Design, Research and Analysis in Fluid Technologies Lab </title>
-    <style>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -182,22 +182,9 @@
         /* Team Section */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
-            justify-items: center;
-        }
-
-        @media (max-width: 992px) {
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 576px) {
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         .team-member {
@@ -232,16 +219,6 @@
             font-weight: bold;
             color: #2d3748;
             margin-bottom: 0.5rem;
-        }
-
-        .member-name a {
-            color: #2d3748;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .member-name a:hover {
-            color: #667eea;
         }
 
         .member-role {
