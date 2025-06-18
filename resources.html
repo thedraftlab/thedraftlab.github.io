@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resources - DRAFT Lab</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="images/logo.png">
     <style>
         * {
             margin: 0;
@@ -44,15 +46,28 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4a5568;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            flex: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            transition: all 0.3s ease;
         }
 
         .nav-links a {
@@ -80,6 +95,86 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #4a5568;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(9px, 9px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Dropdown */
+        .mobile-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .mobile-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            max-height: 400px;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 0;
+        }
+
+        .mobile-nav-links a {
+            padding: 1rem 2rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            display: block;
+        }
+
+        .mobile-nav-links a:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-left-color: #667eea;
+            color: #667eea;
+            transform: translateX(8px);
         }
 
         /* Header Section */
@@ -301,8 +396,20 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .logo img {
+                height: 40px;
+            }
+
             .nav-links {
                 display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-container {
+                padding: 1rem 1.5rem;
             }
 
             .header h1 {
@@ -335,13 +442,48 @@
                 font-size: 0.9rem;
             }
         }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 35px;
+            }
+
+            .nav-container {
+                padding: 1rem 1rem;
+            }
+
+            .mobile-nav-links a {
+                padding: 0.8rem 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+
+            .resource-content {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">Design, Research and Analysis in Fluid Technologies Lab</div>
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="DRAFT Lab Logo">
+            </a>
+            
+            <!-- Desktop Navigation -->
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#research">Research</a></li>
@@ -350,6 +492,25 @@
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
+
+            <!-- Hamburger Menu -->
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Mobile Dropdown -->
+            <div class="mobile-dropdown" id="mobileDropdown">
+                <div class="mobile-nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#research">Research</a>
+                    <a href="index.html#team">Team</a>
+                    <a href="index.html#publications">Publications</a>
+                    <a href="resources.html">Resources</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -412,6 +573,40 @@
     </footer>
 
     <script>
+        // Mobile Navigation
+        const hamburger = document.getElementById('hamburger');
+        const mobileDropdown = document.getElementById('mobileDropdown');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking on a link
+        const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileDropdown.classList.remove('active');
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileDropdown.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileDropdown.classList.remove('active');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                hamburger.classList.remove('active');
+                mobileDropdown.classList.remove('active');
+            }
+        });
+
         // Filter functionality
         const filterButtons = document.querySelectorAll('.filter-btn');
         const resourceCards = document.querySelectorAll('.resource-card');

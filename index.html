@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRAFT Lab </title>
+    <title>DRAFT Lab</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="shortcut icon" type="image/png" href="images/logo.png">
 <style>
         * {
             margin: 0;
@@ -44,11 +46,21 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4a5568;
+            display: flex;
+            align-items: center;
             text-decoration: none;
             flex: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-links {
@@ -487,8 +499,8 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .logo {
-                font-size: 1.2rem;
+            .logo img {
+                height: 40px;
             }
 
             .nav-links {
@@ -551,8 +563,8 @@
         }
 
         @media (max-width: 480px) {
-            .logo {
-                font-size: 1rem;
+            .logo img {
+                height: 35px;
             }
 
             .nav-container {
@@ -599,7 +611,9 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo">Design, Research and Analysis in Fluid Technologies Lab</a>
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="DRAFT Lab Logo">
+            </a>
             
             <!-- Desktop Navigation -->
             <ul class="nav-links">
