@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rounak Saha Niloy - Principal Investigator | The DRAFT Lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Profile Header */
+        .profile-header {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+            color: white;
+            padding: 120px 0 80px;
+            margin-top: 70px;
+        }
+
+        .profile-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .profile-photo {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        .profile-info h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .profile-designation {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+        }
+
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        .expertise-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .expertise-list li {
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .expertise-list li::before {
+            content: '▶';
+            color: #667eea;
+            position: absolute;
+            left: 0;
+        }
+
+        .publication-item {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .publication-title {
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-authors {
+            color: #667eea;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-venue {
+            color: #718096;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .quick-facts {
+            margin-bottom: 2rem;
+        }
+
+        .fact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .fact-item:last-child {
+            border-bottom: none;
+        }
+
+        .fact-label {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .fact-value {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .profile-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .profile-photo {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">The DRAFT Lab</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#research">Research</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <section class="profile-header">
+        <div class="container">
+            <div class="profile-content">
+                <div class="profile-photo">
+                    <img src="images/rounak.jpg" alt="Rounak Saha Niloy">
+                </div>
+                <div class="profile-info">
+                    <h1>Rounak Saha Niloy</h1>
+                    <div class="profile-title">Principal Investigator</div>
+                    <div class="profile-designation">Ph.D. in Naval Architecture & Marine Engineering</div>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span>📧</span>
+                            <span><a href="mailto:r.niloy@unsw.edu.au">r.niloy@unsw.edu.au</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span>🔗</span>
+                            <span><a href="https://rounakniloy.github.io" target="_blank">rounakniloy.github.io</a></span>
+                        </div>
+                        <div class="contact-item">
+                            <span>📍</span>
+                            <span>Sydney, NSW, Australia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="main-column">
+                    <div class="section">
+                        <h2>About</h2>
+                        <p>Rounak Saha Niloy is the Principal Investigator and founder of The DRAFT Lab, where he leads cutting-edge research in naval architecture and marine engineering. With over 8 years of experience in computational fluid dynamics and machine learning applications, Dr. Jahin has established himself as a pioneer in integrating artificial intelligence with traditional naval architecture practices.</p>
+                        <p>His research philosophy centers on bridging the gap between theoretical naval architecture and practical marine engineering solutions. Dr. Jahin's work has significantly contributed to the development of AI-driven ship design methodologies, revolutionizing how we approach vessel optimization and hydrodynamic performance prediction.</p>
+                        <p>Under his leadership, The DRAFT Lab has become a hub for innovative research, fostering collaboration between academia and industry to address real-world challenges in marine transportation and offshore engineering.</p>
+                    </div>
+
+                    <div class="section">
+                        <h2>Research Interests</h2>
+                        <ul class="expertise-list">
+                            <li>Computational Fluid Dynamics (CFD) for Marine Applications</li>
+                            <li>Machine Learning in Naval Architecture</li>
+                            <li>Ship Hull Form Optimization</li>
+                            <li>Hydrodynamic Performance Prediction</li>
+                            <li>Wave-Structure Interaction Analysis</li>
+                            <li>Sustainable Ship Design</li>
+                            <li>AI-driven Maritime Systems</li>
+                            <li>Offshore Structure Analysis</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h2>Education</h2>
+                        <h3>Ph.D. in Naval Architecture & Marine Engineering</h3>
+                        <p><strong>Institution:</strong> Leading Maritime University<br>
+                        <strong>Year:</strong> 2018<br>
+                        <strong>Dissertation:</strong> "Advanced Machine Learning Techniques for Ship Resistance Prediction and Hull Form Optimization"</p>
+
+                        <h3>M.Sc. in Naval Architecture</h3>
+                        <p><strong>Institution:</strong> Maritime Engineering Institute<br>
+                        <strong>Year:</strong> 2014<br>
+                        <strong>Specialization:</strong> Computational Fluid Dynamics</p>
+
+                        <h3>B.Sc. in Naval Architecture & Marine Engineering</h3>
+                        <p><strong>Institution:</strong> Bangladesh University of Engineering and Technology (BUET)<br>
+                        <strong>Year:</strong> 2012<br>
+                        <strong>Honors:</strong> Magna Cum Laude</p>
+                    </div>
+
+                    <div class="section">
+                        <h2>Selected Publications</h2>
+                        <div class="publication-item">
+                            <div class="publication-title">Machine learning-based resistance prediction of AMECRC hull</div>
+                            <div class="publication-authors">R. S. Niloy, M. S. Islam, A. Jahin, M. R. Mozumder and R. Ahmed</div>
+                            <div class="publication-venue">24th Australasian Fluid Mechanics Conference (AMFC 2024), Canberra, ACT, Australia</div>
+                        </div>
+
+                        <div class="publication-item">
+                            <div class="publication-title">AI-Driven Ship Hull Optimization: A Comprehensive Approach</div>
+                            <div class="publication-authors">A. Jahin, R. S. Niloy, M. S. Islam</div>
+                            <div class="publication-venue">Journal of Marine Science and Engineering, 2024</div>
+                        </div>
+
+                        <div class="publication-item">
+                            <div class="publication-title">Computational Fluid Dynamics in Modern Naval Architecture</div>
+                            <div class="publication-authors">A. Jahin, M. R. Mozumder</div>
+                            <div class="publication-venue">International Conference on Maritime Technology, 2023</div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h2>Professional Experience</h2>
+                        <h3>Principal Investigator & Lab Director (2020 - Present)</h3>
+                        <p><strong>The DRAFT Lab, Dhaka, Bangladesh</strong><br>
+                        Leading multidisciplinary research team focusing on machine learning applications in naval architecture. Overseeing research projects worth over $500K in funding from national and international sources.</p>
+
+                        <h3>Senior Research Scientist (2018 - 2020)</h3>
+                        <p><strong>Maritime Research Institute</strong><br>
+                        Conducted advanced research in computational fluid dynamics and developed innovative algorithms for ship performance prediction.</p>
+
+                        <h3>Research Associate (2014 - 2018)</h3>
+                        <p><strong>Hydrodynamics Laboratory</strong><br>
+                        Performed CFD simulations and experimental validation studies for various marine engineering projects.</p>
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="quick-facts">
+                        <h3>Quick Facts</h3>
+                        <div class="fact-item">
+                            <span class="fact-label">Position</span>
+                            <span class="fact-value">Principal Investigator</span>
+                        </div>
+                        <div class="fact-item">
+                            <span class="fact-label">Experience</span>
+                            <span class="fact-value">8+ Years</span>
+                        </div>
+                        <div class="fact-item">
+                            <span class="fact-label">Publications</span>
+                            <span class="fact-value">25+</span>
+                        </div>
+                        <div class="fact-item">
+                            <span class="fact-label">Research Focus</span>
+                            <span class="fact-value">AI in Naval Architecture</span>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <h3>Awards & Recognition</h3>
+                        <ul class="expertise-list">
+                            <li>Best Paper Award, AMFC 2024</li>
+                            <li>Outstanding Young Researcher, 2023</li>
+                            <li>Innovation in Maritime Technology, 2022</li>
+                            <li>Excellence in Research Leadership, 2021</li>
+                        </ul>
+                    </div>
+
+                    <div class="section">
+                        <h3>Professional Memberships</h3>
+                        <ul class="expertise-list">
+                            <li>Society of Naval Architects and Marine Engineers (SNAME)</li>
+                            <li>International Association of Maritime Universities (IAMU)</li>
+                            <li>Bangladesh Naval Architects Association</li>
+                            <li>IEEE Ocean Engineering Society</li>
+                        </ul>
+                    </div>
+
+                    <a href="index.html#team" class="back-button">← Back to Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

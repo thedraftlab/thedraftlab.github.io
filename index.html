@@ -135,7 +135,7 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            color: #2d3748;
+            color: #2d3748; /* Dark slate gray (same) */
             position: relative;
         }
 
@@ -144,12 +144,31 @@
             position: absolute;
             width: 80px;
             height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #667eea, #764ba2); /* Accent underline */
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 2px;
         }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            color: #4a5568; /* Dark gray-blue for consistency */
+            text-align: center;
+        }
+
+        .section-description {
+            font-size: 1rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin: 1rem auto 2rem;
+            color: #4a5568; /* Match subtitle */
+            text-align: center;
+            line-height: 1.6;
+        }
+
 
         /* Research Areas */
         .research-grid {
@@ -179,43 +198,70 @@
             font-size: 1.3rem;
         }
 
-        /* Team Section */
+        /* Enhanced Team Section */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
             margin-top: 3rem;
         }
 
         .team-member {
-            text-align: center;
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
         }
 
         .team-member:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
         .member-photo {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             background: linear-gradient(45deg, #667eea, #764ba2);
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: white;
             font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .member-info {
+            text-align: center;
         }
 
         .member-name {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: bold;
             color: #2d3748;
             margin-bottom: 0.5rem;
@@ -223,7 +269,41 @@
 
         .member-role {
             color: #667eea;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .member-designation {
+            color: #718096;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .member-bio {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .member-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
             font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .member-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
         /* Publications */
@@ -340,6 +420,21 @@
             .section-title {
                 font-size: 2rem;
             }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .team-member {
+                padding: 2rem;
+            }
+
+            .member-photo {
+                width: 120px;
+                height: 120px;
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -388,35 +483,64 @@
         </div>
     </section>
 
-    <!-- Team Section -->
+    <!-- Enhanced Team Section -->
     <section id="team" class="section">
         <div class="container">
             <h2 class="section-title">Our Team</h2>
             <div class="team-grid">
                 <div class="team-member fade-in">
-                    <div class="member-photo">AJ</div>
-                    <div class="member-name">Abrar Jahin</div>
-                    <div class="member-role">Principal Investigator</div>
+                    <div class="member-photo"><img src="images/abrar-jahin.jpg" alt="Abrar Jahin"></div>
+                    <div class="member-info">
+                        <div class="member-name">Abrar Jahin</div>
+                        <div class="member-role">Principal Investigator</div>
+                        <div class="member-designation">Ph.D. in Naval Architecture & Marine Engineering</div>
+                        <div class="member-bio">Co-founder of the DRAFT Lab, watercraft design specialist, in pursuit of bridging the gap between theory and application.</div>
+                        <a href="abrar-jahin.html" class="member-link">View Profile</a>
+                    </div>
                 </div>
+                
                 <div class="team-member fade-in">
-                    <div class="member-photo">RN</div>
-                    <div class="member-name">Rounak Saha Niloy</div>
-                    <div class="member-role">Researcher</div>
+                    <div class="member-photo"><img src="images/rounak.jpg" alt="Rounak Saha Niloy"></div>
+                    <div class="member-info">
+                        <div class="member-name">Rounak Saha Niloy</div>
+                        <div class="member-role">Senior Researcher</div>
+                        <div class="member-designation">M.Sc. in Marine Technology</div>
+                        <div class="member-bio">Co-founder of the DRAFT Lab, watercraft design specialist, in pursuit of bridging the gap between theory and application.</div>
+                        <a href="rounak-niloy.html" class="member-link">View Profile</a>
+                    </div>
                 </div>
+                
                 <div class="team-member fade-in">
                     <div class="member-photo">MS</div>
-                    <div class="member-name">Md. Shariful Islam</div>
-                    <div class="member-role">Researcher</div>
+                    <div class="member-info">
+                        <div class="member-name">Md. Shariful Islam</div>
+                        <div class="member-role">Computational Researcher</div>
+                        <div class="member-designation">M.Sc. in Naval Architecture</div>
+                        <div class="member-bio">Co-founder of the DRAFT Lab, marine and offshore engineering researcher, committed to driving innovation through data-driven design and interdisciplinary insight.</div>
+                        <a href="shariful-islam.html" class="member-link">View Profile</a>
+                    </div>
                 </div>
+                
                 <div class="team-member fade-in">
-                    <div class="member-photo">IG</div>
-                    <div class="member-name">Imon Ghosh Pranta</div>
-                    <div class="member-role">Researcher</div>
+                    <div class="member-photo"><img src="images/imon.jpg" alt="Imon Ghosh Pranta"></div>
+                    <div class="member-info">
+                        <div class="member-name">Imon Ghosh Pranta</div>
+                        <div class="member-role">Design Researcher</div>
+                        <div class="member-designation">B.Sc. in Naval Architecture & Marine Engineering</div>
+                        <div class="member-bio">CFD fanatic and recent Naval Architecture graduate exploring the synergy of simulation, programming, and machine learning. Literature lover and open-source explorer.</div>
+                        <a href="imon-pranta.html" class="member-link">View Profile</a>
+                    </div>
                 </div>
+                
                 <div class="team-member fade-in">
-                    <div class="member-photo">MA</div>
-                    <div class="member-name">Md. Ariful Islam</div>
-                    <div class="member-role">Researcher</div>
+                    <div class="member-photo"><img src="images/arif.jpg" alt="Md. Ariful Islam"></div>
+                    <div class="member-info">
+                        <div class="member-name">Md. Ariful Islam</div>
+                        <div class="member-role">Research Associate</div>
+                        <div class="member-designation">B.Sc. in Naval Architecture & Marine Engineering</div>
+                        <div class="member-bio">A recent BUET graduate specializing in Machine Learning, CFD and Naval Architecture. Enthusiastic about Heat Transfer, Fluid Mechanics, Optimization and Renewable Energy, with a commitment to fostering sustainable innovations and their pragmatic implementation in these domains.</div>
+                        <a href="ariful-islam.html" class="member-link">View Profile</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -437,26 +561,23 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="contact-info">
-                <div class="contact-card fade-in">
-                    <div class="contact-icon">📍</div>
-                    <h3>Address</h3>
-                    <p>Design, Research and Analysis in Fluid Technologies Lab<br>(The DRAFT Lab)<br>
-                    Dhaka, Bangladesh - 1000</p>
-                </div>
-                <div class="contact-card fade-in">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <p>thedraftlab@outlook.com</p>
-                </div>
-<!--                 <div class="contact-card fade-in">
-                    <div class="contact-icon">📞</div>
-                    <h3>Phone</h3>
-                    <p>Office: (555) 123-4567<br>
-                    Lab: (555) 123-4568</p>
-                </div> -->
+    <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">Let’s Collaborate</p>
+        <p class="section-description">
+            Whether you're a researcher, industry partner, or student, we’re open to collaborations that push the boundaries of maritime innovation.
+        </p>
+
+        <div class="contact-info">
+            <div class="contact-card fade-in">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <p>thedraftlab@outlook.com</p>
+            </div>
+            <div class="contact-card fade-in">
+                <div class="contact-icon">📍</div>
+                <h3>Location</h3>
+                <p>The DRAFT Lab<br>Dhaka, Bangladesh – 1000</p>
             </div>
         </div>
     </section>
