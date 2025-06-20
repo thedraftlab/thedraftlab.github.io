@@ -314,6 +314,22 @@
             left: 0;
         }
 
+/* New Code */
+        /* Publications */
+        .publication {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .publication h4 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+/* End of New Code */
         .publication .authors {
             color: #667eea;
             font-weight: 500;
